@@ -1,0 +1,8 @@
+import fs from'node:fs';import{adapters,adapterFor}from'./adapters/index.mjs';
+export const legacyKinds={image:{ark:'image'},video:{ark:'video',minimax:'minimaxVideo'},speech:{minimax:'speech'},music:{minimax:'music',tencent:'tencentMusic',bailian:'bailianMusic'}};
+export const providerLabels={ark:'火山方舟',minimax:'MiniMax',tencent:'腾讯云 MPS',bailian:'阿里百炼',...Object.fromEntries([...adapters.values()].map(a=>[a.id,a.label]))};
+export function choices(kind){return {...legacyKinds[kind],...Object.fromEntries([...adapters.values()].filter(a=>a.kinds[kind]).map(a=>[a.id,a.kinds[kind]]))};}
+export const baseline={schemaVersion:1,defaults:{image:'ark',video:'ark',speech:'minimax',music:'minimax'},voices:{minimax:'male-qn-qingse',siliconflow:'alex'}};
+export function validateRouting(value){if(!value||value.schemaVersion!==1)throw Error('Invalid routing schema');for(const kind of Object.keys(baseline.defaults))if(!Object.hasOwn(choices(kind),value.defaults?.[kind]))throw Error('Unsupported provider for '+kind);const voices=value.voices||baseline.voices;for(const v of Object.values(voices))if(typeof v!=='string'||v.length>150||/[\p{Cc}\p{Cf}]/u.test(v))throw Error('Invalid voice');return {schemaVersion:1,defaults:{...value.defaults},voices:{...baseline.voices,...voices},...(value.models?{models:value.models}:{})};}
+export function readRouting(file){return fs.existsSync(file)?validateRouting(JSON.parse(fs.readFileSync(file,'utf8').replace(/^\uFEFF/,''))):structuredClone(baseline);}
+export function presetKey(kind,provider){const key=choices(kind)[provider];if(!key)throw Error('Unsupported provider for '+kind);return key;}

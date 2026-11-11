@@ -1,0 +1,11 @@
+import {pipelineEstimate31} from './pipeline-billing31.mjs';
+import fs from 'node:fs';import path from 'node:path';import {DatabaseSync} from 'node:sqlite';
+export function history3(root){
+ const items=[],dir=path.join(root,'workflows3','jobs');
+ if(fs.existsSync(dir))for(const name of fs.readdirSync(dir).filter(n=>n.endsWith('.json'))){try{const j=JSON.parse(fs.readFileSync(path.join(dir,name)));items.push({type:'workflow',id:j.id,kind:j.kind||'image',backend:'Local',status:j.contractAudit53?.state==='pending'?'validation-required':j.status,created:j.created,estimateCNY:0,error:j.validationError||j.error||null,verificationState:j.contractAudit53?.state==='pending'?'validation-required':j.contract53?.resultVerification==='passed'?'passed':null});}catch{}}
+ for(const [file,query,map]of [
+ ['tasks.sqlite','SELECT * FROM tasks',r=>{const p=JSON.parse(r.plan);let verificationState=null;try{const files=JSON.parse(r.files||'[]'),bad=files.find(f=>f.verification&&f.verification.verified===false);if(bad)verificationState=bad.verification.state||'verification-required';}catch{}return{type:'cloud',id:r.id,created:r.created,status:r.status,kind:p.input.kind,backend:'Cloud',model:p.model,estimateCNY:p.estimate,error:r.error||null,verificationState};}],
+ ['pipelines-v3/jobs.sqlite','SELECT id,plan,worker FROM jobs',r=>{const p=JSON.parse(r.plan);return{type:'pipeline',id:r.id,created:p.created,status:p.state,kind:'pipeline',backend:p.stages.some(s=>s.executor==='cloud-media')?'Hybrid':'Local',estimateCNY:pipelineEstimate31(p.stages)};}]
+ ]){if(!fs.existsSync(path.join(root,file)))continue;const db=new DatabaseSync(path.join(root,file),{readOnly:true});try{const controls=file.startsWith('pipelines')&&db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='controls'").get();for(const r of db.prepare(query).all())try{const item=map(r);if(controls&&!['completed','cancelled'].includes(item.status)){const flag=db.prepare('SELECT paused FROM controls WHERE id=?').get(r.id)?.paused;if(flag)item.status=flag===2?(r.worker?'cancel-requested':'cancelled'):(r.worker?'pause-requested':'paused');}items.push(item);}catch{}}finally{db.close();}}
+ return items.sort((a,b)=>String(b.created).localeCompare(String(a.created))).slice(0,100);
+}

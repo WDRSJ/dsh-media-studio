@@ -1,0 +1,2 @@
+import {autoDecision3}from'../src/auto3.mjs';
+const root=process.argv[2],inventory=JSON.parse(process.argv[3]);const decision=await autoDecision3({root,config:{load:()=>({value:{connections:[]}})}},{kind:'image',prompt:'model binding restart fixture',tier:'preview',budgetCNY:0},'owner',{discover:async()=>[{id:'local',url:'http://127.0.0.1:1',local:true,available:true,checkpoints:inventory,devices:[{type:'cuda',vram_free:8*1024**3}]}],inspect:async()=>({compatible:true,issues:[]})});console.log(JSON.stringify(decision));

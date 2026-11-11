@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "paidGenerationEnabled": false,
+  "monthlyBudgetCNY": 0,
+  "perRequestBudgetCNY": 0,
+  "approvalHours": 24,
+  "minimaxMusicEligible": false,
+  "bailianMusicEligible": false,
+  "bailianWorkspaceId": null,
+  "presets": {
+    "image": {
+      "preview": {
+        "model": "doubao-seedream-5-0-flash-260915",
+        "unit": "image",
+        "unitPriceCNY": 0.12,
+        "priceSource": "https://docs.volcengine.com/docs/ark/model-pricing?lang=zh",
+        "priceCheckedAt": "2026-10-29T05:47:17.593Z"
+      },
+      "quality": {
+        "model": "doubao-seedream-5-0-pro-260628",
+        "unit": "image",
+        "unitPriceCNY": 0.66,
+        "priceSource": "https://docs.volcengine.com/docs/ark/model-pricing?lang=zh",
+        "priceCheckedAt": "2026-10-29T05:47:17.593Z"
+      }
+    },
+    "video": {
+      "preview": {
+        "model": "doubao-seedance-2-0-fast-260128",
+        "unit": "video_second",
+        "unitPriceCNY": 0.42,
+        "priceSource": "https://docs.volcengine.com/docs/ark/model-pricing?lang=zh",
+        "priceCheckedAt": "2026-10-29T10:33:57.02Z"
+      },
+      "quality": {
+        "model": "doubao-seedance-2-5-260628",
+        "unit": "video_second",
+        "unitPriceCNY": 1.7,
+        "priceSource": "https://docs.volcengine.com/docs/ark/model-pricing?lang=zh",
+        "priceCheckedAt": "2026-10-29T10:33:57.02Z"
+      }
+    },
+    "speech": {
+      "preview": {
+        "model": "speech-2.8-turbo",
+        "unit": "speech_kchar",
+        "unitPriceCNY": 0.2,
+        "priceSource": "https://platform.minimax.cn/docs/pricing/overview",
+        "priceCheckedAt": "2026-10-29T05:47:17.593Z"
+      },
+      "quality": {
+        "model": "speech-2.8-hd",
+        "unit": "speech_kchar",
+        "unitPriceCNY": 0.35,
+        "priceSource": "https://platform.minimax.cn/docs/pricing/overview",
+        "priceCheckedAt": "2026-10-29T05:47:17.593Z"
+      }
+    },
+    "music": {
+      "preview": {
+        "model": "music-3.0",
+        "unit": "music_request",
+        "unitPriceCNY": null,
+        "priceSource": null,
+        "priceCheckedAt": null
+      },
+      "quality": {
+        "model": "music-3.0",
+        "unit": "music_request",
+        "unitPriceCNY": null,
+        "priceSource": null,
+        "priceCheckedAt": null
+      }
+    },
+    "bailianMusic": {
+      "preview": {
+        "model": "fun-music-preview",
+        "unit": "music_request",
+        "unitPriceCNY": null,
+        "priceSource": null,
+        "priceCheckedAt": null
+      },
+      "quality": {
+        "model": "fun-music-v1",
+        "unit": "music_request",
+        "unitPriceCNY": null,
+        "priceSource": null,
+        "priceCheckedAt": null
+      }
+    },
+    "tencentMusic": {
+      "preview": {
+        "model": "MiniMaxMusic-3.0",
+        "unit": "music_request",
+        "unitPriceCNY": 1.2,
+        "priceSource": "https://cloud.tencent.com/document/product/862/36180",
+        "priceCheckedAt": "2026-10-29T10:33:57.02Z"
+      },
+      "quality": {
+        "model": "MiniMaxMusic-3.0",
+        "unit": "music_request",
+        "unitPriceCNY": 1.2,
+        "priceSource": "https://cloud.tencent.com/document/product/862/36180",
+        "priceCheckedAt": "2026-10-29T10:33:57.020Z"
+      }
+    },
+    "minimaxVideo": {
+      "preview": {
+        "unit": "video_second",
+        "priceSource": "https://platform.minimax.cn/docs/pricing/overview",
+        "priceCheckedAt": "2026-10-29T11:01:13.839Z",
+        "model": "MiniMax-H3-Lite",
+        "unitPriceCNY": 0.2
+      },
+      "quality": {
+        "unit": "video_second",
+        "priceSource": "https://platform.minimax.cn/docs/pricing/overview",
+        "priceCheckedAt": "2026-10-29T11:01:13.839Z",
+        "model": "MiniMax-H3",
+        "unitPriceCNY": 0.6
+      }
+    }
+  },
+  "tencentMusicEligible": false
+}

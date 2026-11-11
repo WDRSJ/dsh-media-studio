@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import os from 'node:os';import path from 'node:path';import {history3} from '../src/history3.mjs';
+test('history returns task metadata without prompts, owners, graphs, credentials or file paths',()=>{
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'history3-'));try{const dir=path.join(root,'workflows3','jobs');fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(path.join(dir,'one.json'),JSON.stringify({id:'one',owner:'private-owner',graph:{secret:'private'},status:'completed',files:[{path:'private-file'}],created:'2026-11-04'}));fs.writeFileSync(path.join(dir,'broken.json'),'{');const result=history3(root);assert.equal(result.length,1);assert.equal(result[0].status,'completed');assert.ok(!JSON.stringify(result).includes('private'));}finally{fs.rmSync(root,{recursive:true,force:true});}
+});

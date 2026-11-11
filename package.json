@@ -1,0 +1,83 @@
+{
+  "name": "@local/dsh-media-studio",
+  "version": "3.1.0-dev.75",
+  "type": "module",
+  "description": "DSH Media Studio 3.1 — a visual creation and media-resource layer for DeepSeek Harness, with ComfyUI workflows and cloud providers.",
+  "displayName": "多媒体工作室",
+  "main": "src/index.mjs",
+  "exports": {
+    ".": "./src/index.mjs",
+    "./client": "./ui/client.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-locale"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/schemastery": "^3.18.5",
+    "@deepseek-ai/dsh-tools": "^0.2.1-rc.5 || ^0.2.2-rc.1"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/schemastery": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-tools": {
+      "optional": true
+    }
+  },
+  "files": [
+    "src",
+    "ui",
+    "engine",
+    "cordis.patch.yml",
+    "README.md",
+    "README_EN.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    "assets",
+    "docs/*.md"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=24.14.0"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@deepseek-ai/schemastery": "3.18.5"
+  },
+  "dependencies": {
+    "tencentcloud-sdk-nodejs-mps": "4.1.335",
+    "zod": "4.6.7"
+  },
+  "author": "Local Media Studio contributors",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WDRSJ/dsh-media-studio.git"
+  },
+  "homepage": "https://github.com/WDRSJ/dsh-media-studio",
+  "bugs": {
+    "url": "https://github.com/WDRSJ/dsh-media-studio/issues"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "comfyui",
+    "media",
+    "image",
+    "video",
+    "music",
+    "speech",
+    "workflow"
+  ]
+}
