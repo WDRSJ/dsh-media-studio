@@ -84,7 +84,6 @@ ComfyUI 的节点、自定义节点、模型和工作流由用户自行安装维
 
 - 仍为开发预览版，接口和界面可能变化。
 - Cloud 真实收费路径尚未全面验收；费用确认和实际生成必须在 DSH 对话中完成。
-- 尚未完成第二台物理设备验收。
 - 某些 ComfyUI 版本不能通过深链自动切换工作流画布；需在 ComfyUI 中手动打开。
 - 云端账户、ComfyUI 服务和模型资源均由用户外部维护。
 - 详见 [已知限制](docs/LIMITATIONS.md)。
@@ -118,3 +117,4 @@ npm pack
 本项目使用 [MIT License](LICENSE)。
 
 第三方依赖、ComfyUI、模型权重、Piper 和系统 TTS 的边界见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。模型权重与第三方节点不随本项目分发。
+本人代码基础极弱，大幅度使用AI生成，尽量做到功能简单可靠
